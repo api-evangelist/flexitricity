@@ -1,0 +1,81 @@
+aid: flexitricity
+url: https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml
+name: Flexitricity
+kind: company
+description: >-
+  Flexitricity Limited is an Edinburgh-based energy flexibility aggregator and
+  licensed electricity supplier operating what it describes as the first, largest
+  and most advanced demand response portfolio in Great Britain — a virtual power
+  plant exceeding 1GW. Founded in 2004 by Dr Alastair Martin, acquired by Alpiq in
+  2014, merged with Quinbrook's Velox Power in 2022, and per the company's own
+  timeline acquired by Drax in 2026, it sits in the value chain between commercial,
+  industrial and aggregated domestic energy assets and the GB wholesale and
+  balancing markets. It routes customer assets — batteries, standby generation,
+  industrial load, hydrogen electrolysers, co-located sites and, through its FlexGO
+  product, residential EV charging — into the Balancing Mechanism, Capacity Market,
+  frequency response, reserve services, the Demand Flexibility Service, DNO
+  flexibility markets and wholesale trading. Its API posture is closed: Flexitricity
+  publishes no developer portal, no documented public API, no OpenAPI, and no open
+  market data of its own. The developer-facing subdomains developer., developers.,
+  docs., api. and data. do not resolve; the only interactive surface is
+  portal.flexitricity.com, which requires a customer account. The United Kingdom has
+  no consumer data-portability mandate comparable to Australia's Consumer Data Right,
+  so nothing compels Flexitricity to expose customer usage data through an API. The
+  open, machine-readable data about Flexitricity is published by Elexon, not by
+  Flexitricity — its 63 registered BM Units under lead party FLEXTRCY are retrievable
+  anonymously from the Elexon BMRS Insights API. Open on the regulator's side,
+  closed on its own: that split is the finding.
+image: https://cms.flexitricity.com/uploads/icon_fb9283d967.png
+tags:
+- Energy
+- United Kingdom
+- Utilities
+- Electricity
+- Demand Response
+- Energy Markets
+- Grid
+- DER
+- Battery Storage
+- Virtual Power Plant
+- Flexibility
+- EV Charging
+created: '2026-07-27'
+modified: '2026-07-27'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://www.flexitricity.com/
+- type: About
+  url: https://www.flexitricity.com/about
+- type: OurStory
+  url: https://www.flexitricity.com/about/our-story
+- type: Team
+  url: https://www.flexitricity.com/about/our-team
+- type: Services
+  url: https://www.flexitricity.com/services
+- type: Portal
+  url: https://portal.flexitricity.com/
+- type: Login
+  url: https://portal.flexitricity.com/login
+- type: Blog
+  url: https://www.flexitricity.com/blog
+- type: Resources
+  url: https://www.flexitricity.com/resources/brochures-white-papers
+- type: Videos
+  url: https://www.flexitricity.com/videos
+- type: PrivacyPolicy
+  url: https://www.flexitricity.com/legal/privacy-policy
+- type: TermsOfService
+  url: https://www.flexitricity.com/legal/terms-conditions
+- type: Compliance
+  url: https://www.flexitricity.com/legal/license-conditions
+- type: LinkedIn
+  url: https://www.linkedin.com/company/flexitricity/
+- type: YouTube
+  url: https://www.youtube.com/user/FlexitricityLtd
+- type: GitHubOrganization
+  url: https://github.com/Flexitricity
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

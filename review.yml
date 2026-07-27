@@ -1,0 +1,298 @@
+aid: flexitricity
+name: Flexitricity
+review:
+  question: Does Flexitricity publish a public, documented API for energy data — consumer
+    usage/metering or open market data — and if so, what mandate, standard, and access
+    gate govern it?
+  answer: false
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  method: anonymous HTTP probing of the primary domain, developer-convention subdomains,
+    developer-convention paths, well-known paths, the customer portal, the headless
+    CMS host, the FlexGO product site, the GitHub organization, plus third-party
+    verification against the Elexon BMRS Insights API.
+
+energyDataPosture:
+  homeMarket: United Kingdom
+  organizationType: >-
+    Energy flexibility aggregator (virtual power plant operator) and licensed GB
+    electricity supplier. Not a network operator, not a metering agent, not a
+    system operator. Tier: storage-flexibility.
+
+  mandateRegime: smart-meter-infrastructure
+  mandateRegimeNarrative: >-
+    Great Britain mandated infrastructure and market machinery, not a consumer data
+    right. There is no GB equivalent of the Australian Consumer Data Right for
+    energy and no equivalent of the Ontario Green Button regulation. What binds
+    Flexitricity is market-code infrastructure: it holds a GB electricity supply
+    licence (per its own timeline, since 2018) and is a Balancing and Settlement
+    Code party under Elexon, qualified as a Virtual Lead Party, as the first BSC
+    qualified Asset Meter Virtual Lead Party (2023), and as a Virtual Trading Party
+    (2025). Those obligations produce settlement-grade data — but the obligation to
+    PUBLISH that data sits on Elexon and NESO, not on Flexitricity. No obligation
+    anywhere requires Flexitricity to expose an API.
+
+  mandateStatus: live-implemented
+  mandateStatusEvidence: >-
+    RUTHLESS READING REQUIRED. "live-implemented" here means the INFRASTRUCTURE
+    obligation is verifiably live — it does NOT mean Flexitricity operates a
+    mandated API. The evidence is a machine-readable register entry retrieved
+    anonymously, not a claim and not a compliance page. GET
+    https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all returned HTTP 200
+    (2026-07-27) with 3,041 registered BM Units, of which 63 carry
+    leadPartyName "Flexitricity Limited" and leadPartyId "FLEXTRCY" — 43 supplier
+    (type S), 12 virtual (type V, e.g. V__LFLEX001, V__PFLEX001, V__NFLEX001), 5
+    type T and 3 type E units, spread across 12 GSP groups, each row carrying
+    demandCapacity, generationCapacity and transmission loss factors. That register
+    entry is real, third-party, and anonymous. It is ELEXON's implementation of
+    ELEXON's publication duty. Flexitricity's own contribution to it is compliance
+    data, not a product surface.
+  mandateStatusCaveat: >-
+    Do not let the mandate imply the implementation. Flexitricity itself publishes
+    ZERO endpoints. Every byte of open, machine-readable data about this
+    organization comes from the regulator's central body. If the question is "did
+    the mandated party build an API", the honest answer is no, and nothing required
+    it to.
+
+  dataStandard: >-
+    no API data standard reference found. No Green Button / ESPI, no CDR Consumer
+    Data Standards, no OpenADR, no IEEE 2030.5, no IEC CIM, no OCPP/OCPI reference
+    was found on any Flexitricity or FlexGO page. The company operates under GB
+    market codes (Balancing and Settlement Code, Capacity Market rules, Grid Code) —
+    market codes, not API data standards. Its own materials describe "proprietary
+    outstations, software interfaces" and "real-time automated controls" without
+    naming a single protocol.
+
+  consumerDataApi: false
+  consumerDataNarrative: >-
+    No third party can obtain an individual customer's usage, metering, settlement
+    or revenue data through any documented Flexitricity API. The only route to a
+    customer's own data is a login at portal.flexitricity.com, which is available
+    only to contracted asset owners. No consent framework, no accreditation
+    pathway, no third-party access model is published.
+
+  marketDataOpen: false
+  marketDataNarrative: >-
+    Flexitricity publishes no open grid, market or system data of its own — no
+    dispatch feed, no portfolio telemetry, no revenue or availability dataset, no
+    open-data portal. This is the split that defines the profile: Flexitricity's
+    market activity IS openly published, in detail, by Elexon (BMRS/Insights) and
+    NESO, anonymously and without a key. The organization is fully transparent
+    through the regulator's pipes and fully opaque through its own.
+
+  accessGate: customer-account-required
+  accessGateNarrative: >-
+    What a developer must actually do to get in: nothing works. There is no
+    self-serve developer signup, no application form for API access, no sandbox, no
+    key request, no partner developer programme, and no published contact route for
+    API access. The only credentialed surface is portal.flexitricity.com, reachable
+    only by becoming a Flexitricity customer through a commercial contract for asset
+    optimisation, demand side response or FlexGO, after which the company issues
+    portal credentials. A developer wanting Flexitricity market data should go to
+    Elexon's open BMRS Insights API instead, which needs no account at all.
+
+  authModel: >-
+    No documented API authentication scheme of any kind — no API key, no OAuth 2.0,
+    no OpenID Connect, no mTLS, no accreditation model. No OpenID discovery document
+    is served: GET https://www.flexitricity.com/.well-known/openid-configuration
+    returned HTTP 200 but with the Next.js catch-all HTML shell, not JSON, and
+    https://portal.flexitricity.com/.well-known/openid-configuration 307-redirected
+    to /login. The portal login page (title "Flexitricity Portal") presents a
+    credential form; the string "sso" appears only inside unrelated markup
+    ("crossOrigin", "precedence") and no identity provider (Auth0, Okta, Cognito,
+    Entra/Azure AD) is referenced in the delivered HTML.
+
+  productApiFamily: >-
+    None exposed. For the record, the real product segmentation Flexitricity's own
+    docs use — none of which is API-addressable — is: Services (Asset Optimisation;
+    Demand Side Response; Infrastructure, Systems & Control), Asset Types (BESS,
+    Co-located Assets, Demand Side Response, FlexGO), and Market Access (Energy
+    Trading, Balancing Mechanism, Frequency Response, Reserve Services, Local
+    Constraint Market, Demand Flexibility Service, Capacity Market, DNO Flexibility
+    Services, NIV Chasing, Cost Avoidance).
+
+findings:
+  summary: >-
+    Flexitricity has no public developer surface. apis[] is empty and that is the
+    correct, honest result. The primary domain is a Next.js application with a
+    catch-all route that returns HTTP 200 and an identical HTML shell for EVERY
+    path, including /openapi.json, /swagger.json, /api-docs, /robots.txt and
+    /sitemap.xml — a soft-404 trap that would produce false positives for any
+    harvester that trusts status codes alone. Every one of those responses was
+    inspected and confirmed to be the same marketing shell (title "Flexitricity |
+    Flexitricity"), not a spec. All five developer-convention subdomains fail DNS
+    outright. The customer portal auth-walls everything, including /api and
+    /robots.txt. The GitHub organization exists but is empty. Nothing was harvested
+    because nothing real exists to harvest.
+  softFourOhFourWarning: >-
+    CRITICAL for downstream automation: www.flexitricity.com and flexgo.energy both
+    return HTTP 200 for arbitrary paths. Status code alone is meaningless on these
+    hosts. Content inspection is mandatory. No 200 from either host was treated as
+    evidence of an artifact.
+  developerPortal: none found
+  openapiHarvested: false
+  specsHarvested: 0
+
+probes:
+  - url: https://www.flexitricity.com/
+    status: 200
+    result: Live corporate site (Next.js). Confirmed real content.
+  - url: https://flexitricity.com/
+    status: 200
+    result: Live, serves same site.
+  - url: https://developer.flexitricity.com/
+    status: 000
+    result: DNS resolution failure — host does not exist.
+  - url: https://developers.flexitricity.com/
+    status: 000
+    result: DNS resolution failure — host does not exist.
+  - url: https://docs.flexitricity.com/
+    status: 000
+    result: DNS resolution failure — host does not exist.
+  - url: https://api.flexitricity.com/
+    status: 000
+    result: DNS resolution failure — host does not exist.
+  - url: https://data.flexitricity.com/
+    status: 000
+    result: DNS resolution failure — host does not exist.
+  - url: https://www.flexitricity.com/developers
+    status: 200
+    result: SOFT 404 — Next.js catch-all marketing shell, not a developer portal.
+  - url: https://www.flexitricity.com/developer
+    status: 200
+    result: SOFT 404 — same catch-all shell.
+  - url: https://www.flexitricity.com/api
+    status: 200
+    result: SOFT 404 — same catch-all shell.
+  - url: https://www.flexitricity.com/docs
+    status: 200
+    result: SOFT 404 — same catch-all shell.
+  - url: https://www.flexitricity.com/data
+    status: 200
+    result: SOFT 404 — same catch-all shell.
+  - url: https://www.flexitricity.com/openapi.json
+    status: 200
+    result: SOFT 404 — returns text/html Next.js shell titled "Flexitricity |
+      Flexitricity". NOT a specification. Not harvested.
+  - url: https://www.flexitricity.com/swagger.json
+    status: 200
+    result: SOFT 404 — identical HTML shell. Not a specification. Not harvested.
+  - url: https://www.flexitricity.com/api-docs
+    status: 200
+    result: SOFT 404 — identical HTML shell.
+  - url: https://www.flexitricity.com/.well-known/openid-configuration
+    status: 200
+    result: SOFT 404 — HTML shell, not JSON. No OpenID Connect discovery served.
+  - url: https://www.flexitricity.com/robots.txt
+    status: 200
+    result: SOFT 404 — HTML shell returned instead of a robots file. No robots.txt.
+  - url: https://www.flexitricity.com/sitemap.xml
+    status: 200
+    result: SOFT 404 — HTML shell returned instead of XML. No sitemap published.
+  - url: https://portal.flexitricity.com/
+    status: 307 -> 200
+    result: Customer portal. Redirects to /login?callbackUrl=%2F. Next.js. Title
+      "Flexitricity Portal". Customer account required; not a developer portal.
+  - url: https://portal.flexitricity.com/login
+    status: 200
+    result: Credential login form. No identity provider or OAuth flow disclosed.
+  - url: https://portal.flexitricity.com/api
+    status: 307
+    result: Redirects to /login?callbackUrl=%2Fapi — entire API namespace auth-walled.
+  - url: https://portal.flexitricity.com/robots.txt
+    status: 307
+    result: Redirects to login — no anonymous surface whatsoever behind the portal.
+  - url: https://portal.flexitricity.com/api/auth/providers
+    status: 200
+    result: Returns HTML shell, not a NextAuth providers JSON document. No auth
+      provider list disclosed anonymously.
+  - url: https://portal.flexitricity.com/api/auth/session
+    status: 200
+    result: Returns HTML shell, not session JSON.
+  - url: https://portal.flexitricity.com/.well-known/openid-configuration
+    status: 307
+    result: Redirects to login. No OIDC discovery document served.
+  - url: https://cms.flexitricity.com/
+    status: 200
+    result: Headless CMS host serving media assets referenced by the marketing site.
+  - url: https://cms.flexitricity.com/api
+    status: 404
+    result: JSON 404 (application/json). No public content API documented or exposed.
+  - url: https://cms.flexitricity.com/documentation
+    status: 404
+    result: JSON 404. No CMS API documentation.
+  - url: https://cms.flexitricity.com/api/documentation
+    status: 404
+    result: JSON 404. No CMS API documentation.
+  - url: https://flexgo.energy/
+    status: 200
+    result: FlexGO product site (Flexitricity's I&C and aggregated-domestic offering,
+      launched 2025). No API, developer, integration or data-feed reference anywhere
+      on the site.
+  - url: https://flexgo.energy/openapi.json
+    status: 200
+    result: SOFT 404 — HTML shell. Same catch-all behaviour as the parent site.
+  - url: https://flexgo.energy/robots.txt
+    status: 200
+    result: SOFT 404 — HTML shell. No robots file.
+  - url: https://www.flexitricity.com/services/infrastructure-systems-control
+    status: 200
+    result: Real page. Describes "proprietary outstations, software interfaces",
+      "real-time automated controls" and a 24/7 control room. Names NO protocol,
+      NO API, NO SCADA/Modbus/OpenADR/IEEE 2030.5 standard.
+  - url: https://www.flexitricity.com/about/our-story
+    status: 200
+    result: Real page. Founded 2004 by Dr Alastair Martin; Alpiq acquisition 2014;
+      Velox Power (Quinbrook) merger 2022; supply licence 2018; first behind-the-
+      meter asset in the Balancing Mechanism 2018; Flex Assure first wave 2019;
+      first BSC qualified AMVLP 2023; VPP surpassed 1GW 2024; Virtual Trading Party
+      qualification and FlexGO launch 2025; "Drax acquires Flexitricity" 2026.
+  - url: https://api.github.com/orgs/flexitricity
+    status: 200
+    result: GitHub organization "Flexitricity" exists (created 2024-08-29, blog
+      flexitricity.com) with public_repos = 0. Empty — no SDKs, no specs, no code.
+  - url: https://api.github.com/search/repositories?q=flexitricity
+    status: 200
+    result: total_count = 1, and the single hit is an unrelated third-party repo.
+      No Flexitricity-authored public code exists.
+  - url: https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all
+    status: 200
+    result: THIRD-PARTY VERIFICATION (not a Flexitricity API). Anonymous, no key.
+      3,041 BM Units returned; 63 registered to leadPartyName "Flexitricity Limited"
+      / leadPartyId "FLEXTRCY" across 12 GSP groups (43 type S, 12 type V, 5 type T,
+      3 type E). This is the hard evidence behind the mandate status, and it
+      belongs to Elexon, not Flexitricity. Deliberately NOT listed in apis[].
+
+sources:
+  - url: https://www.flexitricity.com/
+    type: Website
+    note: Company overview, services, market access routes, 1GW+ virtual power plant.
+  - url: https://www.flexitricity.com/about/our-story
+    type: About
+    note: Founding, ownership history, licences, BSC qualifications, 2026 Drax
+      acquisition — all per the company's own timeline.
+  - url: https://www.flexitricity.com/services/infrastructure-systems-control
+    type: Documentation
+    note: Closest thing to a technical page. No protocol or API named.
+  - url: https://flexgo.energy/
+    type: Website
+    note: FlexGO product site. No developer or API content.
+  - url: https://portal.flexitricity.com/login
+    type: Login
+    note: The only credentialed surface. Customer account required.
+  - url: https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all
+    type: ThirdPartyRegister
+    note: Elexon BMRS Insights API. Anonymous register entry proving Flexitricity's
+      BSC lead-party status and 63 BM Units. Elexon's API, not Flexitricity's.
+
+actions:
+  apisYmlCreated: true
+  apisListed: 0
+  openapiDirectoryCreated: false
+  reason: >-
+    apis[] is empty because Flexitricity documents no public API. No OpenAPI,
+    Swagger, AsyncAPI, GraphQL schema, Postman collection or machine-readable
+    contract of any kind was found on any host operated by the company. Nothing was
+    fabricated, and no soft-404 HTML response was saved as a specification. The
+    profile is identity plus an evidenced negative — which, for a GB flexibility
+    aggregator with no consumer data mandate, is the accurate state of the world.
