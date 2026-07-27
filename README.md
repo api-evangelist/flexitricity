@@ -56,7 +56,17 @@ No public, documented APIs were found. Flexitricity publishes no developer porta
 - [Licence Conditions](https://www.flexitricity.com/legal/license-conditions)
 - [LinkedIn](https://www.linkedin.com/company/flexitricity/)
 - [YouTube](https://www.youtube.com/user/FlexitricityLtd)
+- [Contact](https://www.flexitricity.com/contact)
+- [FlexGO](https://flexgo.energy/) — product site
 - [GitHub Organization](https://github.com/Flexitricity) — exists, zero public repositories
+
+## Artifacts
+
+- [security/flexitricity-domain-security.yml](security/flexitricity-domain-security.yml) — TLS/HSTS/DNSSEC/CAA/SPF/DMARC across every Flexitricity host. TLS 1.3 everywhere, HSTS on portal/CMS/FlexGO but not on `www`, no DNSSEC, no CAA, DMARC at `quarantine`. Records one **dangling CNAME**: `trading.flexitricity.com` points at a CloudFront distribution that no longer resolves.
+- [well-known/flexitricity-well-known.yml](well-known/flexitricity-well-known.yml) — evidenced negative for the `/.well-known/` surface. Zero documents on any host; every HTTP 200 is the soft-404 shell.
+- [llms/flexitricity-llms.txt](llms/flexitricity-llms.txt) — generated agent-facing index, including the explicit warning that no API exists and that Elexon, not Flexitricity, is where the machine-readable data lives.
+
+No `openapi/`, `packages/`, `mcp/`, `skills/`, `asyncapi/`, `conventions/` or `errors/` directories exist, because there is no specification and no published developer surface to ground them in. A registry sweep (npm, PyPI, RubyGems, Packagist, crates.io, NuGet) returned zero results.
 
 ## A note for harvesters
 

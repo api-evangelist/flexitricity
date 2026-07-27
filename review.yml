@@ -263,6 +263,58 @@ probes:
       3 type E). This is the hard evidence behind the mandate status, and it
       belongs to Elexon, not Flexitricity. Deliberately NOT listed in apis[].
 
+  # --- enrichment round 2026-07-27 (second pass) ---
+  - url: https://cms.flexitricity.com/api/pages
+    status: 403
+    result: Strapi content API EXISTS but is closed. JSON ForbiddenError, meaning the
+      collection type is registered and the anonymous public role has no find
+      permission. Same 403 for /api/articles, /api/videos and /api/upload/files;
+      honest JSON 404 for /api/blogs and /api/posts (no such collection). Not a
+      public API, not documented anywhere, not listed in apis[].
+  - url: https://cms.flexitricity.com/graphql
+    status: 404
+    result: No Strapi GraphQL plugin exposed.
+  - url: https://cms.flexitricity.com/_health
+    status: 204
+    result: Strapi health endpoint responds. Confirms the host is a live Strapi
+      instance, not a static asset bucket.
+  - url: https://cms.flexitricity.com/documentation/v1.0.0/swagger.json
+    status: 404
+    result: Strapi documentation plugin not installed. No generated OpenAPI.
+  - url: https://www.flexitricity.com/.well-known/security.txt
+    status: 200
+    result: SOFT 404 — HTML shell, not RFC 9116 text. No security.txt. Same shell for
+      /security.txt, /.well-known/api-catalog, /.well-known/ai-plugin.json,
+      /.well-known/oauth-authorization-server and /llms.txt. Repeated on
+      flexgo.energy with identical results; portal.flexitricity.com 307s all of them
+      to /login; cms.flexitricity.com returns honest JSON 404s.
+  - url: https://www.flexitricity.com/vulnerability-disclosure
+    status: 200
+    result: SOFT 404 — and a documented false positive. An automated security-program
+      probe recorded this as a disclosure page because the body contains the string
+      "vulnerability"; content inspection shows all three occurrences are the
+      requested URL path echoed back inside the Next.js flight payload
+      (\"c\":[\"\",\"vulnerability-disclosure\"]). Title is the generic
+      "Flexitricity | Flexitricity". There is NO vulnerability disclosure policy.
+      The probe-written artifact was deleted rather than committed.
+  - url: https://trading.flexitricity.com
+    status: 000
+    result: DANGLING CNAME. Resolves to CNAME dhenfu8l1wx2e.cloudfront.net on the
+      local resolver, 1.1.1.1 and 8.8.8.8, but that CloudFront name has no address
+      records — the distribution no longer exists, so the host cannot be connected
+      to. The only Flexitricity subdomain outside www/portal/cms that resolves at
+      all. Recorded in security/flexitricity-domain-security.yml as observed DNS
+      state; an unclaimed CNAME target of this shape is the classic
+      subdomain-takeover precondition.
+  - url: dns sweep — status./app./my./ops./iot./connect./portal-api./sso./auth.flexitricity.com
+    status: 000
+    result: All NXDOMAIN. No further Flexitricity-operated hosts exist. In particular
+      there is no status page host.
+  - url: package registry sweep (npm, PyPI, RubyGems, Packagist, crates.io, NuGet)
+    status: 200
+    result: Zero results for "flexitricity" on every registry. No first-party or
+      third-party client library exists. packages/ intentionally not created.
+
 sources:
   - url: https://www.flexitricity.com/
     type: Website
@@ -284,6 +336,33 @@ sources:
     type: ThirdPartyRegister
     note: Elexon BMRS Insights API. Anonymous register entry proving Flexitricity's
       BSC lead-party status and 63 BM Units. Elexon's API, not Flexitricity's.
+
+enrichment:
+  round: '2026-07-27'
+  contractDiscovery: >-
+    Re-run in full and still negative. No OpenAPI/Swagger on any host root (all five
+    developer subdomains NXDOMAIN; www and flexgo soft-404 every spec path), no
+    GraphQL (cms /graphql 404, no other graphql surface), no MCP server, no
+    AsyncAPI, no webhook documentation, no Postman collection, no .proto, no
+    /.well-known/ document anywhere. The single new machine-readable surface found
+    this round is the Strapi content API at cms.flexitricity.com/api, which is
+    undocumented and returns 403 to anonymous callers — evidence of a private CMS
+    backend, not a public API. apis[] correctly remains empty.
+  artifactsWritten:
+    - security/flexitricity-domain-security.yml
+    - well-known/flexitricity-well-known.yml
+    - llms/flexitricity-llms.txt
+  artifactsIntentionallySkipped: >-
+    packages/ (no library on any registry), openapi/, asyncapi/, mcp/, skills/,
+    overlays/, errors/, conventions/, data-model/, scopes/, authentication/,
+    sandbox/, cli/, components/, changelog/, lifecycle/, conformance/, arazzo/,
+    agentic-access/ — every one of these requires either a spec or a published
+    provider surface, and neither exists. Nothing was generated to fill a slot.
+  pointersIntentionallyNotWired: >-
+    No WellKnown, SecurityTxt, Security, VulnerabilityDisclosure, TrustCenter,
+    StatusPage, Deprecation, SDKs, Idempotency, AgentSkill, Webhooks or MCPServer
+    pointer was added. Each of those scoring checks reads a thing Flexitricity does
+    not publish; wiring one would be fabrication.
 
 actions:
   apisYmlCreated: true

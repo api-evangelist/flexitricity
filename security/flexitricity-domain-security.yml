@@ -1,0 +1,80 @@
+generated: '2026-07-27'
+method: probed
+source: live DNS/TLS/HTTP probes of every Flexitricity-operated host in apis.yml plus
+  a subdomain sweep (this provider publishes no OpenAPI, so there are no servers[]
+  hosts to probe)
+hosts:
+- host: www.flexitricity.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 28 11:46:20 2027 GMT
+  hsts: false
+  note: Marketing site (Next.js). No HSTS header on the primary marketing host.
+- host: portal.flexitricity.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 28 11:46:20 2027 GMT
+  hsts: true
+  hsts_max_age: 63072000
+  note: Customer portal. Two-year HSTS. Every path auth-walls to /login.
+- host: cms.flexitricity.com
+  https: true
+  tls_version: TLSv1.3
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  note: Headless CMS (Strapi). A content API exists at /api but every collection
+    returns 403 Forbidden to the anonymous public role; /_health returns 204.
+- host: flexgo.energy
+  https: true
+  tls_version: TLSv1.3
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  note: FlexGO product site on a separate domain (A record 20.90.217.7).
+- host: www.flexgo.energy
+  https: true
+  tls_version: TLSv1.3
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+- host: trading.flexitricity.com
+  https: false
+  resolves: false
+  note: DANGLING CNAME. trading.flexitricity.com returns CNAME
+    dhenfu8l1wx2e.cloudfront.net from the local resolver, 1.1.1.1 and 8.8.8.8, but
+    that CloudFront name itself has no address records — the distribution it points
+    at no longer exists, so no connection is possible ("Could not resolve host").
+    Recorded as observed DNS state on 2026-07-27. An unclaimed CNAME target of this
+    shape is the classic subdomain-takeover precondition.
+domains:
+- domain: flexitricity.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+  dmarc_record: 'v=DMARC1; p=quarantine; pct=100; rua=mailto:dmarc@flexitricity.com;
+    sp=quarantine; adkim=r; aspf=r;'
+- domain: flexgo.energy
+  dnssec: false
+  caa: []
+  spf: true
+  spf_record: v=spf1 include:spf.protection.outlook.com include:144179153.spf01.hubspotemail.net
+    -all
+  dmarc: true
+  dmarc_policy: quarantine
+  dmarc_record: 'v=DMARC1; p=quarantine; pct=100; rua=mailto:dmarc@flexitricity.com;
+    sp=quarantine; adkim=r; aspf=r;'
+summary:
+  tls: Every reachable host negotiates TLSv1.3 with a valid certificate.
+  hsts: Present on the portal, CMS and FlexGO hosts; absent on the primary www
+    marketing host.
+  dnssec: Not enabled on either domain.
+  caa: No CAA records published on either domain.
+  email_auth: SPF and DMARC published on both domains; DMARC policy is quarantine
+    (not reject) with aggregate reporting to dmarc@flexitricity.com.
+  observations:
+  - One dangling CNAME (trading.flexitricity.com -> a non-resolving CloudFront
+    distribution).
+  - No security.txt is served on any host (see well-known/flexitricity-well-known.yml).

@@ -44,6 +44,10 @@ modified: '2026-07-27'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: DomainSecurity
+  url: security/flexitricity-domain-security.yml
+- type: LLMsTxt
+  url: llms/flexitricity-llms.txt
 - type: Website
   url: https://www.flexitricity.com/
 - type: About
@@ -54,6 +58,11 @@ common:
   url: https://www.flexitricity.com/about/our-team
 - type: Services
   url: https://www.flexitricity.com/services
+- type: Contact
+  url: https://www.flexitricity.com/contact
+- type: Product
+  name: FlexGO
+  url: https://flexgo.energy/
 - type: Portal
   url: https://portal.flexitricity.com/
 - type: Login

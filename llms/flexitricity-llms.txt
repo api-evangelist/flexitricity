@@ -1,0 +1,44 @@
+# Flexitricity
+
+> Flexitricity Limited is an Edinburgh-based energy flexibility aggregator and licensed GB electricity supplier operating a demand-response virtual power plant of more than 1GW. It routes customer assets — batteries, standby generation, industrial load, hydrogen electrolysers and, through FlexGO, residential EV charging — into the Balancing Mechanism, Capacity Market, frequency response, reserve services, the Demand Flexibility Service, DNO flexibility markets and wholesale trading.
+
+> IMPORTANT FOR AGENTS: Flexitricity publishes **no public API**. There is no developer portal, no API reference, no OpenAPI/AsyncAPI/GraphQL contract, no SDK, no sandbox and no self-serve signup. The only credentialed surface is the customer portal, which requires a commercial contract. Do not infer an endpoint from any URL below. Note also that www.flexitricity.com and flexgo.energy return HTTP 200 with the same marketing HTML shell for **every** path — a soft-404 trap. Never treat a 200 from those hosts as evidence that a document exists.
+
+## Company
+- [Website](https://www.flexitricity.com/): Corporate site, services and market-access routes.
+- [About](https://www.flexitricity.com/about): Company overview.
+- [Our Story](https://www.flexitricity.com/about/our-story): Founded 2004 by Dr Alastair Martin; Alpiq acquisition 2014; Velox Power (Quinbrook) merger 2022; GB supply licence 2018; first BSC-qualified Asset Meter Virtual Lead Party 2023; VPP past 1GW 2024; Virtual Trading Party qualification and FlexGO launch 2025; Drax acquisition 2026.
+- [Team](https://www.flexitricity.com/about/our-team): Leadership.
+- [Contact](https://www.flexitricity.com/contact): info@flexitricity.com; 24/7 control room operator@flexitricity.com; +44 (0)131 221 8100.
+
+## Services and assets
+- [Services](https://www.flexitricity.com/services): Asset Optimisation; Demand Side Response; Infrastructure, Systems & Control.
+- [Infrastructure, Systems & Control](https://www.flexitricity.com/services/infrastructure-systems-control): The closest thing to a technical page. Describes proprietary outstations, software interfaces and real-time automated control from a 24/7 control room. Names no protocol and no API.
+- [FlexGO](https://flexgo.energy/): Product site for the I&C and aggregated-domestic (residential EV charging) offering launched 2025. No developer or API content.
+
+## Access
+- [Customer portal](https://portal.flexitricity.com/): Customer accounts only.
+- [Portal login](https://portal.flexitricity.com/login): Credential form. No published identity provider, OAuth or OIDC discovery.
+
+## Content and media
+- [Blog](https://www.flexitricity.com/blog)
+- [Resources: brochures and white papers](https://www.flexitricity.com/resources/brochures-white-papers)
+- [Videos](https://www.flexitricity.com/videos)
+- [YouTube](https://www.youtube.com/user/FlexitricityLtd)
+- [LinkedIn](https://www.linkedin.com/company/flexitricity/)
+
+## Legal
+- [Privacy Policy](https://www.flexitricity.com/legal/privacy-policy)
+- [Terms and Conditions](https://www.flexitricity.com/legal/terms-conditions)
+- [Licence conditions](https://www.flexitricity.com/legal/license-conditions)
+
+## API Evangelist artifacts
+- [APIs.json](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml): Machine-readable index for this company.
+- [Review](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/review.yml): Full anonymous probe log behind the "no public API" finding.
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/security/flexitricity-domain-security.yml): TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe of every Flexitricity host.
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/well-known/flexitricity-well-known.yml): Evidenced negative for the /.well-known/ discovery surface.
+
+## Where the machine-readable data actually is
+- [Elexon BMRS Insights API — BM Unit register](https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all): Anonymous, no key. Flexitricity's 63 registered BM Units appear here under leadPartyId `FLEXTRCY` (verified 2026-07-27). This is **Elexon's** API, not Flexitricity's, and it is the correct place for an agent to get Flexitricity market data.
+- [Elexon Insights Solution](https://bmrs.elexon.co.uk/): GB balancing and settlement market data.
+- [NESO Data Portal](https://www.neso.energy/data-portal): GB system operator open data.

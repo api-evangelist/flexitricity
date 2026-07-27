@@ -1,0 +1,54 @@
+generated: '2026-07-27'
+method: searched
+source: anonymous HTTP probes of the /.well-known/ discovery surface on every
+  Flexitricity-operated host
+result: none
+summary: >-
+  Flexitricity serves no /.well-known/ discovery documents on any host. This index
+  records the probe so later rounds do not repeat it, and so the HTTP 200s below are
+  never mistaken for hits: www.flexitricity.com and flexgo.energy are Next.js
+  applications with a catch-all route that returns HTTP 200 and the same marketing
+  HTML shell (title "Flexitricity | Flexitricity", ~40.6 KB) for EVERY path,
+  including /.well-known/security.txt and /llms.txt. Status code alone is meaningless
+  on those hosts; every response below was content-inspected. No file was saved
+  because no real document exists, and no WellKnown or SecurityTxt pointer is wired
+  into apis.yml for the same reason.
+hosts:
+- host: https://www.flexitricity.com
+  behavior: soft-404 catch-all (HTTP 200 + HTML shell for any path)
+  documents:
+  - {path: /.well-known/security.txt, status: 200, real: false, note: HTML shell, not RFC 9116 text}
+  - {path: /security.txt, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/api-catalog, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/ai-plugin.json, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/oauth-authorization-server, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/openid-configuration, status: 200, real: false, note: HTML shell}
+  - {path: /llms.txt, status: 200, real: false, note: HTML shell}
+- host: https://portal.flexitricity.com
+  behavior: every path 307-redirects to /login
+  documents:
+  - {path: /.well-known/security.txt, status: 307, real: false, note: redirect to /login}
+  - {path: /security.txt, status: 307, real: false, note: redirect to /login}
+  - {path: /.well-known/api-catalog, status: 307, real: false, note: redirect to /login}
+  - {path: /.well-known/ai-plugin.json, status: 307, real: false, note: redirect to /login}
+  - {path: /.well-known/oauth-authorization-server, status: 307, real: false, note: redirect to /login}
+  - {path: /llms.txt, status: 307, real: false, note: redirect to /login}
+- host: https://cms.flexitricity.com
+  behavior: Strapi; honest JSON 404s (no soft-404 trap)
+  documents:
+  - {path: /.well-known/security.txt, status: 404, real: false}
+  - {path: /security.txt, status: 404, real: false}
+  - {path: /.well-known/api-catalog, status: 404, real: false}
+  - {path: /.well-known/ai-plugin.json, status: 404, real: false}
+  - {path: /.well-known/oauth-authorization-server, status: 404, real: false}
+  - {path: /llms.txt, status: 404, real: false}
+- host: https://flexgo.energy
+  behavior: soft-404 catch-all (HTTP 200 + HTML shell for any path)
+  documents:
+  - {path: /.well-known/security.txt, status: 200, real: false, note: HTML shell}
+  - {path: /security.txt, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/api-catalog, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/ai-plugin.json, status: 200, real: false, note: HTML shell}
+  - {path: /.well-known/oauth-authorization-server, status: 200, real: false, note: HTML shell}
+  - {path: /llms.txt, status: 200, real: false, note: HTML shell}
+documents_found: 0
