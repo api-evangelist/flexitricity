@@ -1,5 +1,47 @@
 # Flexitricity (flexitricity)
 
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
 Flexitricity Limited is an Edinburgh-based energy flexibility aggregator and licensed electricity supplier operating what it describes as the first, largest and most advanced demand response portfolio in Great Britain — a virtual power plant exceeding 1GW. Founded in 2004 by Dr Alastair Martin, acquired by Alpiq in 2014, merged with Quinbrook's Velox Power in 2022, and per the company's own timeline acquired by Drax in 2026, it sits in the value chain between commercial, industrial and aggregated domestic energy assets and the GB wholesale and balancing markets. It routes customer assets — batteries, standby generation, industrial load, hydrogen electrolysers, co-located sites and, through its FlexGO product, residential EV charging — into the Balancing Mechanism, Capacity Market, frequency response, reserve services, the Demand Flexibility Service, DNO flexibility markets and wholesale trading. Its API posture is closed: Flexitricity publishes no developer portal, no documented public API, no OpenAPI, and no open market data of its own. The developer-facing subdomains developer., developers., docs., api. and data. do not resolve; the only interactive surface is portal.flexitricity.com, which requires a customer account. The United Kingdom has no consumer data-portability mandate comparable to Australia's Consumer Data Right, so nothing compels Flexitricity to expose customer usage data through an API. The open, machine-readable data about Flexitricity is published by Elexon, not by Flexitricity — its 63 registered BM Units under lead party FLEXTRCY are retrievable anonymously from the Elexon BMRS Insights API. Open on the regulator's side, closed on its own: that split is the finding.
 
 **APIs.json:** [https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml)
