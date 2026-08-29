@@ -25,6 +25,17 @@ description: >-
   Flexitricity — its 63 registered BM Units under lead party FLEXTRCY are retrievable
   anonymously from the Elexon BMRS Insights API. Open on the regulator's side,
   closed on its own: that split is the finding.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cms.flexitricity.com/uploads/icon_fb9283d967.png
 tags:
 - Energy
