@@ -1,4 +1,4 @@
-# Flexitricity (flexitricity)
+# Flexitricity
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,76 +66,82 @@
 
 Flexitricity Limited is an Edinburgh-based energy flexibility aggregator and licensed electricity supplier operating what it describes as the first, largest and most advanced demand response portfolio in Great Britain — a virtual power plant exceeding 1GW. Founded in 2004 by Dr Alastair Martin, acquired by Alpiq in 2014, merged with Quinbrook's Velox Power in 2022, and per the company's own timeline acquired by Drax in 2026, it sits in the value chain between commercial, industrial and aggregated domestic energy assets and the GB wholesale and balancing markets. It routes customer assets — batteries, standby generation, industrial load, hydrogen electrolysers, co-located sites and, through its FlexGO product, residential EV charging — into the Balancing Mechanism, Capacity Market, frequency response, reserve services, the Demand Flexibility Service, DNO flexibility markets and wholesale trading. Its API posture is closed: Flexitricity publishes no developer portal, no documented public API, no OpenAPI, and no open market data of its own. The developer-facing subdomains developer., developers., docs., api. and data. do not resolve; the only interactive surface is portal.flexitricity.com, which requires a customer account. The United Kingdom has no consumer data-portability mandate comparable to Australia's Consumer Data Right, so nothing compels Flexitricity to expose customer usage data through an API. The open, machine-readable data about Flexitricity is published by Elexon, not by Flexitricity — its 63 registered BM Units under lead party FLEXTRCY are retrievable anonymously from the Elexon BMRS Insights API. Open on the regulator's side, closed on its own: that split is the finding.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/flexitricity/refs/heads/main/apis.yml)
+**Areas:** Energy · United Kingdom · Utilities · Electricity · Demand Response · Energy Markets · Grid · DER · Battery Storage · Virtual Power Plant · Flexibility · EV Charging
 
-## Tags
+## Flexitricity on APIs.io
 
-- Energy
-- United Kingdom
-- Utilities
-- Electricity
-- Demand Response
-- Energy Markets
-- Grid
-- DER
-- Battery Storage
-- Virtual Power Plant
-- Flexibility
-- EV Charging
+Everything profiled for Flexitricity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/flexitricity/](https://apis.io/providers/flexitricity/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-27
-- **Modified:** 2026-07-27
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Security (1)
 
-No public, documented APIs were found. Flexitricity publishes no developer portal, no API reference, and no machine-readable API contract of any kind. See [review.yml](review.yml) for the full probe log.
+Authentication, trust centre, and vulnerability disclosure.
 
-## Energy Data Posture
+- [Flexitricity Domain Security](https://apis.io/security/flexitricity/flexitricity-domain-security/)
 
-- **Home market:** United Kingdom
-- **Mandate regime:** `smart-meter-infrastructure` — Great Britain mandated infrastructure and market machinery, not a consumer data right. There is no GB equivalent of the Australian Consumer Data Right for energy.
-- **Mandate status:** `live-implemented` — but read the qualifier. The infrastructure obligation is verifiably live: Flexitricity Limited appears in the Elexon BMRS register (lead party `FLEXTRCY`) with 63 BM Units across 12 GSP groups, retrieved anonymously on 2026-07-27. That register is **Elexon's** implementation of **Elexon's** publication duty. Flexitricity itself publishes no endpoint, and nothing obliges it to.
-- **Data standard:** No API data standard reference found. No Green Button/ESPI, no CDR Consumer Data Standards, no OpenADR, no IEEE 2030.5, no IEC CIM, no OCPP/OCPI. The company operates under GB market codes (BSC, Capacity Market rules, Grid Code) — market codes, not API standards.
-- **Consumer data API:** No. There is no documented route for a third party to obtain an individual customer's usage or settlement data.
-- **Open market data:** No — not from Flexitricity. Its market activity is published openly and in detail by Elexon and NESO instead.
-- **Access gate:** `customer-account-required` — the only credentialed surface is `portal.flexitricity.com`, reachable only after signing a commercial contract. There is no self-serve signup, no application form for API access, and no sandbox.
-- **Auth model:** None documented. No API key, OAuth 2.0, OpenID Connect, mTLS or accreditation scheme is published; no OIDC discovery document is served.
+## Where to find this API
 
-## Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.flexitricity.com/)
-- [About](https://www.flexitricity.com/about)
-- [Our Story](https://www.flexitricity.com/about/our-story)
-- [Team](https://www.flexitricity.com/about/our-team)
-- [Services](https://www.flexitricity.com/services)
-- [Portal](https://portal.flexitricity.com/)
-- [Login](https://portal.flexitricity.com/login)
 - [Blog](https://www.flexitricity.com/blog)
-- [Resources](https://www.flexitricity.com/resources/brochures-white-papers)
-- [Videos](https://www.flexitricity.com/videos)
-- [Privacy Policy](https://www.flexitricity.com/legal/privacy-policy)
-- [Terms of Service](https://www.flexitricity.com/legal/terms-conditions)
-- [Licence Conditions](https://www.flexitricity.com/legal/license-conditions)
-- [LinkedIn](https://www.linkedin.com/company/flexitricity/)
-- [YouTube](https://www.youtube.com/user/FlexitricityLtd)
-- [Contact](https://www.flexitricity.com/contact)
-- [FlexGO](https://flexgo.energy/) — product site
-- [GitHub Organization](https://github.com/Flexitricity) — exists, zero public repositories
+- [Compliance](https://www.flexitricity.com/legal/license-conditions)
+- [Terms of service](https://www.flexitricity.com/legal/terms-conditions)
+- [Privacy policy](https://www.flexitricity.com/legal/privacy-policy)
+- [GitHub](https://github.com/Flexitricity)
 
-## Artifacts
+## API Evangelist rating
 
-- [security/flexitricity-domain-security.yml](security/flexitricity-domain-security.yml) — TLS/HSTS/DNSSEC/CAA/SPF/DMARC across every Flexitricity host. TLS 1.3 everywhere, HSTS on portal/CMS/FlexGO but not on `www`, no DNSSEC, no CAA, DMARC at `quarantine`. Records one **dangling CNAME**: `trading.flexitricity.com` points at a CloudFront distribution that no longer resolves.
-- [well-known/flexitricity-well-known.yml](well-known/flexitricity-well-known.yml) — evidenced negative for the `/.well-known/` surface. Zero documents on any host; every HTTP 200 is the soft-404 shell.
-- [llms/flexitricity-llms.txt](llms/flexitricity-llms.txt) — generated agent-facing index, including the explicit warning that no API exists and that Elexon, not Flexitricity, is where the machine-readable data lives.
+**Kin Score 15.2** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-No `openapi/`, `packages/`, `mcp/`, `skills/`, `asyncapi/`, `conventions/` or `errors/` directories exist, because there is no specification and no published developer surface to ground them in. A registry sweep (npm, PyPI, RubyGems, Packagist, crates.io, NuGet) returned zero results.
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 35.5 |
 
-## A note for harvesters
+**Agent readiness 0.0** — human-only
 
-`www.flexitricity.com` and `flexgo.energy` both return **HTTP 200 for arbitrary paths**. `/openapi.json`, `/swagger.json`, `/api-docs`, `/robots.txt` and `/sitemap.xml` all return 200 with the same Next.js marketing shell. Status codes alone are meaningless on these hosts — content inspection is mandatory. Nothing here was saved as a specification.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-## Maintainers
+**Regulatory alignment 15.6** — Energy & Utilities
 
-- Kin Lane — kin@apievangelist.com
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/flexitricity/](https://apis.io/providers/flexitricity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Flexitricity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/flexitricity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
